@@ -1,1 +1,9 @@
 <h3>{{viewTitle}}</h3>
+
+<form action='/staff' method='POST' autocomplete='off'>
+<input type='hidden' name='_id' value='{{staff._id}}'>
+<div class='form-group'>
+    <label>Full Name</label>
+    <input type='text' class='form-control' name='fullname' placeholder='Full Name' value='{{staff.fullname}}'>
+</div>
+</form>
