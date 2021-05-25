@@ -1,3 +1,4 @@
+require('./models/db');
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
@@ -25,7 +26,7 @@ mongoose.connect(process.env.MONGO_DB, {
 
 //routes
 app.get('/', (req, res) => {
-    res.send('<h1>Welcome to Staff Database</h1> <h3>Click here to get access to the <br> <a href="/staff/list">Database.</a></br></h3>')
+    res.send('<h1>Welcome to Our Staff Database</h1> <h3>Click here to get access to the <br> <a href="/staff/list">Database.</a></br></h3>')
 });
 
 app.set('views', path.join(__dirname, '/views/'))
