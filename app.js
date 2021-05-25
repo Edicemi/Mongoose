@@ -27,7 +27,7 @@ mongoose.connect(process.env.MONGO_DB, {
 
 //routes
 app.get('/', (req, res) => {
-    res.send('<h1>Welcome to Our Staff Database</h1> <h3>Click here to get access to the <br> <a href="/staffs/list">Database.</a></br></h3>')
+    res.send('<h1>Welcome to Our Staff Database</h1> <h3>Click here to get access to the <br> <a href="/staff/list">Database.</a></br></h3>')
 });
 
 app.set('views', path.join(__dirname, '/views/'))
@@ -42,3 +42,4 @@ app.engine('hbs', exphbs({
 app.set('view engine', 'hbs');
 
 app.listen(3333, () => console.log('server running at port 3333'));
+app.use("/staff", staffContollers);
