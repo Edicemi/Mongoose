@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router()
-const mongoose = require('mongoose');
-const staff = mongoose.model('staff');
+const staff = require('../models/staff.model');
 
 router.get('/', (req, res) => {
-    res.render('staff/edit', {
-        viewTitle: 'Insert staff'
+    res.render('staffs/edit', {
+        viewTitle: 'Insert Staff'
     })
 })
 
@@ -18,7 +17,7 @@ router.post('/', (req, res) => {
 })
 
 function insertRecord(req, res) {
-    var staff = new Staff()
+    const staff = new staff()
     staff.fullname = req.body.fullname;
     staff.email = req.body.email;
     staff.phonenumber = req.body.phonenumber;
@@ -45,7 +44,7 @@ function updateRecord(req, res) {
 router.get('/list', (req, res) => {
     staff.find((err, doc) => {
         if (!err) {
-            res.redirect('staff/list', {
+            res.render('staff/list', {
                 list: doc
             })
         } else {
