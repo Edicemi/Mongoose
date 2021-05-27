@@ -18,7 +18,7 @@ app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
+app.use("/staff", staffContollers);
 
 //routes
 app.get('/', (req, res) => {
@@ -37,4 +37,3 @@ app.engine('hbs', exphbs({
 app.set('view engine', 'hbs');
 
 app.listen(3333, () => console.log('server running at port 3333'));
-app.use("/staff", staffContollers);

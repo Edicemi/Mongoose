@@ -6,8 +6,8 @@ const Staff = mongoose.model('staff');
 router.get('/', (req, res) => {
     res.render('staffs/edit', {
         viewTitle: 'Insert Staff'
-    })
-})
+    });
+});
 
 router.post('/', (req, res) => {
     if (req.body._id == '') {
@@ -15,7 +15,7 @@ router.post('/', (req, res) => {
     } else {
         updateRecord(req, res)
     }
-})
+});
 
 function insertRecord(req, res) {
     const staff = new Staff()
@@ -29,8 +29,8 @@ function insertRecord(req, res) {
         } else {
             console.log('Error during insert: ' + err);
         }
-    })
-}
+    });
+};
 
 function updateRecord(req, res) {
     Staff.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
@@ -39,20 +39,20 @@ function updateRecord(req, res) {
         } else {
             console.log('Error during insert: ' + err);
         }
-    })
-}
+    });
+};
 
 router.get('/list', (req, res) => {
     Staff.find((err, doc) => {
         if (!err) {
             res.render('staffs/list', {
                 list: doc
-            })
+            });
         } else {
-            console.log('Error in retrieve: ' + err)
+            console.log('Error in retrieve: ' + err);
         }
-    })
-})
+    });
+});
 
 router.get('/:id', (req, res) => {
     Staff.findById(req.params.id, (err, doc) => {
