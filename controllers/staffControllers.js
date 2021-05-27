@@ -33,9 +33,9 @@ function insertRecord(req, res) {
 }
 
 function updateRecord(req, res) {
-    staff.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
+    Staff.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
         if (!err) {
-            res.redirect('staff/list')
+            res.render('staffs/list')
         } else {
             console.log('Error during insert: ' + err);
         }
@@ -57,7 +57,7 @@ router.get('/list', (req, res) => {
 router.get('/:id', (req, res) => {
     Staff.findById(req.params.id, (err, doc) => {
         if (!err) {
-            res.redirect('staff/edit', {
+            res.render('staffs/edit', {
                 viewTitle: 'Update Staff',
                 staff: doc,
             });
@@ -69,7 +69,7 @@ router.get('/:id', (req, res) => {
 router.get('/delete/:id', (req, res) => {
     Staff.findByIdAndRemove(req.params.id, (err, doc) => {
         if (!err) {
-            res.redirect('staffs/list')
+            res.render('staffs/list')
         } else {
             console.log('Error in deletion: ' + err);
         }
