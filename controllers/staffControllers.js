@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router()
-const staff = require('../models/staff.model');
+const mongoose = require('mongoose');
+const Staff = mongoose.model('staff');
 
 router.get('/', (req, res) => {
     res.render('staffs/edit', {
@@ -17,14 +18,14 @@ router.post('/', (req, res) => {
 })
 
 function insertRecord(req, res) {
-    const staff = new staff()
+    const staff = new Staff()
     staff.fullname = req.body.fullname;
     staff.email = req.body.email;
-    staff.phonenumber = req.body.phonenumber;
+    staff.mobile = req.body.mobile;
     staff.city = req.body.city
     staff.save((err, doc) => {
         if (!err) {
-            res.redirect('staff/list')
+            res.render('staffs/list')
         } else {
             console.log('Error during insert: ' + err);
         }
@@ -42,9 +43,9 @@ function updateRecord(req, res) {
 }
 
 router.get('/list', (req, res) => {
-    staff.find((err, doc) => {
+    Staff.find((err, doc) => {
         if (!err) {
-            res.render('staff/list', {
+            res.render('staffs/list', {
                 list: doc
             })
         } else {
@@ -54,7 +55,7 @@ router.get('/list', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-    staff.findById(req.params.id, (err, doc) => {
+    Staff.findById(req.params.id, (err, doc) => {
         if (!err) {
             res.redirect('staff/edit', {
                 viewTitle: 'Update Staff',
@@ -66,9 +67,9 @@ router.get('/:id', (req, res) => {
 });
 
 router.get('/delete/:id', (req, res) => {
-    staff.findByIdAndRemove(req.params.id, (err, doc) => {
+    Staff.findByIdAndRemove(req.params.id, (err, doc) => {
         if (!err) {
-            res.redirect('staff/list')
+            res.redirect('staffs/list')
         } else {
             console.log('Error in deletion: ' + err);
         }

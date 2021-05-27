@@ -5,7 +5,7 @@ var staffSchema = new mongoose.Schema({
         type: String,
         required: 'This field is required!',
     },
-    phonenumber: {
+    mobile: {
         type: Number,
         required: 'This field is required!',
     },
